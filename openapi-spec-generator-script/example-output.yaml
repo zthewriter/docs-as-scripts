@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Update Pet
+  version: v1
+  description: Update an existing pet's record
+servers:
+- url: petstore.swagger.io
+  description: Production server
+paths:
+  /pets:
+    put:
+      summary: PUT operation for /pets
+      description: Perform PUT operation on /pets
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The id
+                    example: 123
+                    format: int64
+                  name:
+                    type: string
+                    description: The name
+                    example: Fluffy
+                  status:
+                    type: string
+                    description: The status
+                    example: created
+              example:
+                id: 123
+                name: Fluffy
+                status: created
+      requestBody:
+        description: Request payload
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name
+                  example: Fluffy
+                type:
+                  type: string
+                  description: The type
+                  example: cat
+                age:
+                  type: integer
+                  description: The age
+                  example: 3
+            example:
+              name: Fluffy
+              type: cat
+              age: 3
+components:
+  securitySchemes:
+    httpAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Obtain your bearer token from your account settings
+security:
+- httpAuth: []
